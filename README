@@ -1,0 +1,11 @@
+h1. Bash
+
+Bash Command Line is the default application at Mac OSX and Linux
+
+* http://www.gnu.org/software/bash/
+
+h1. Usage
+
+<pre><code>
+git clone git@github.com:ClauberStipkovic/dotfiles.git ~/.bash
+</code></pre>
