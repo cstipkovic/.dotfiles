@@ -6,6 +6,4 @@ Bash Command Line is the default application at Mac OSX and Linux
 
 h1. Usage
 
-<pre><code>
-git clone git@github.com:ClauberStipkovic/dotfiles.git ~/.bash
-</code></pre>
+<pre><code>git clone git@github.com:ClauberStipkovic/dotfiles.git ~/.bash</code></pre>
