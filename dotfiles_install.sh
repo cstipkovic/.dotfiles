@@ -3,10 +3,12 @@
 
 # Mac OS X Darwin
 _darwin_os() {
-  if [ ! -f ~/.bash_profile ]
-  then 
+  if [ ! -f ~/.bash_profile ] then
+    curl -Lo ~/.git-completion.bash https://github.com/git/git/raw/master/contrib/completion/git-completion.bash
+    source .git-completion.bash
     echo "Creating symbolyc link for .bash_profile"
     ln -s ~/.bash/.bash_profile ~/.bash_profile
+    echo "source ~/.git-completion.bash" >> ~/.bash_profile
   else
     echo "Exists .bash_profile"
   fi
@@ -22,8 +24,7 @@ _linux_os() {
 
 # Common functions
 _dotfile() {
-  if [ ! -f ~/.bashrc ]
-  then
+  if [ ! -f ~/.bashrc ] then
     echo "Creating symbolyc link for .bashrc"
     ln -s ~/.bash/.bashrc ~/.bashrc
   else
@@ -34,8 +35,7 @@ _dotfile() {
 # Get the OS Name
 os_name=$(uname -s)
 
-if [ $os_name == "Darwin" ]
-then
+if [ $os_name == "Darwin" ] then
   _darwin_os
 else
   _linux_os

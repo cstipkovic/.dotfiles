@@ -1,15 +1,42 @@
-# .bash_profile
+# RVM script
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
 # Alias
 alias ls='ls -G'
-alias ll='ls -lG'
-alias rm='rm -i'
+alias ll='ls -alF'
 
-# Get Git Branch
-_get_git_branch() {
-  echo git branch
+# Setting GIT prompt
+c_cyan=`tput setaf 6`
+c_red=`tput setaf 1`
+c_green=`tput setaf 2`
+c_sgr0=`tput sgr0`
+
+branch_color () {
+    if git rev-parse --git-dir >/dev/null 2>&1 then
+        color=""
+        if git diff --quiet 2>/dev/null >&2 then
+           color=${c_red}
+        else
+          color=${c_green}
+        fi
+    else
+        return 0
+    fi
+    echo -n $color
 }
 
-export PS1='\w \[\033[031m\] ($_get_git_branch)\n$ '
+parse_git_branch () {
+    if git rev-parse --git-dir >/dev/null 2>&1 then
+      gitver=" ("$(git branch 2>/dev/null| sed -n '/^\*/s/^\* //p')")"
+    else
+        return 0
+    fi
+    echo -e $gitver
+}
 
-#export PS1='\w \[\033[31m\]\'ruby -e \print (%x{git branch 2> /dev/null}.grep(/^\*/).first || '').gsub(/^\* (.+)$/, '(\1) ')\"\'\[\033[37m\]$\[\033[00m\] \n$ '
+#It's important to escape colors with \[ to indicate the length is 0
+PS1='${c_green}[\u@\[ \]\W\[\]\[\[$(branch_color)\] $(parse_git_branch)\[\]]${c_sgr0} '
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function
+
+source ~/.git-completion.bash
