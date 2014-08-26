@@ -33,5 +33,6 @@ parse_git_branch () {
 
 #It's important to escape colors with \[ to indicate the length is 0
 PS1='${c_green}[\u@\[ \]\W\[\]\[\[$(branch_color)\] $(parse_git_branch)\[\]]${c_sgr0} '
+export PS1='\[\033[01;32m\]\u\[\033[01;34m\]@\W\[\033[31m\]$(__git_ps1 "(%s)") \[\033[01;34m\]$\[\033[00m\] '
 
 source ~/.git-completion.bash
