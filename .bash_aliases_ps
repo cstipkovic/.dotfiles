@@ -1,0 +1,44 @@
+alias stopJboss='sudo /etc/init.d/jboss stop pagseguro-fe pagseguro-admin pagseguro-jms pagseguro-be'
+alias startJboss='sudo /etc/init.d/jboss start pagseguro-fe pagseguro-admin pagseguro-jms pagseguro-be'
+alias restartJboss='sudo /etc/init.d/jboss restart pagseguro-fe pagseguro-admin pagseguro-jms pagseguro-be'
+alias statusJboss='sudo /etc/init.d/jboss status'
+
+alias runSqldeveloper='sudo sqldeveloper'
+
+alias startApache='sudo /opt/apache-ssl/bin/apachectl start'
+alias stopApache='sudo /opt/apache-ssl/bin/apachectl stop'
+alias restartApache='sudo /opt/apache-ssl/bin/apachectl restart'
+
+alias reloadBash='source ~/.bashrc'
+
+alias pagseguroDir='cd ~/workspace/pagseguro/maven-project'
+alias hostsDir='cd ~/workspace/pagseguro/conf/hosts/'
+
+alias logBe='tail -3000f /export/logs/pagseguro-be/server.log'
+alias logBe-gl='tail -3000f /export/logs/pagseguro-be-gl/server.log'
+alias logFe='tail -3000f /export/logs/pagseguro-fe/server.log'
+alias logFe-gl='tail -3000f /export/logs/pagseguro-fe-gl/server.log'
+alias logAdmin='tail -3000f /export/logs/pagseguro-admin/server.log'
+alias logJms='tail -3000f /export/logs/pagseguro-jms/server.log'
+
+alias buildLocal='mvn clean install -Plocal'
+alias buildLocalFaster='mvn clean install -Plocal -T1C'
+alias buildLocalFasterNoTests='mvn clean install -Plocal -T1C -DskipTests'
+alias buildLocalNoTests='mvn clean install -Plocal -DskipTests'
+alias buildLocalJboss='mvn clean install -Plocal,jboss'
+alias buildLocalFasterJboss='mvn clean install -Plocal,jboss -T1C'
+alias buildLocalFasterNoTestsJboss='mvn clean install -Plocal,jboss -T1C -DskipTests'
+alias buildLocalNoTestsJboss='mvn clean install -Plocal,jboss -DskipTests'
+
+alias buildStage='mvn clean install -Pstage'
+
+alias buildDev='mvn clean install -Pdev'
+alias buildDevFaster='mvn clean install -Pdev -T1C'
+alias buildDevFasterNoTests='mvn clean install -Pdev -T1C -DskipTests'
+alias buildDevNoTests='mvn clean install -Pdev -DskipTests'
+alias buildDevJboss='mvn clean install -Pdev,jboss'
+alias buildDevFasterJboss='mvn clean install -Pdev,jboss -T1C'
+alias buildDevFasterNoTestsJboss='mvn clean install -Pdev,jboss -T1C -DskipTests'
+alias buildLocalNoTests='mvn clean install -Plocal,jboss -DskipTests'
+
+alias prodZenv='rdesktop -g 1240x840 -dUOLCORP -u rribaldo a4-zenv2.host.intranet -N -5 -K -r clipboard:CLIPBOARD'
