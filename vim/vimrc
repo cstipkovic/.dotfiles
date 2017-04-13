@@ -25,10 +25,10 @@ call plug#begin('~/.vim/plugged')
 call plug#end()
 
 " Options
+syntax enable
 set number
-syntax on
 colorscheme onedark
-set cursorline	
+set cursorline
 set nowrap
 set tw=120
 set clipboard=unnamed
