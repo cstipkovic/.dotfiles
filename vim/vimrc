@@ -51,6 +51,9 @@ nnoremap <leader>bn :bn<cr>
 nnoremap <leader>bd :bd<cr>
 nnoremap <leader>wo <C-w>o
 nnoremap <leader>bd :bd<cr>
+nnoremap <leader>tk :tabnext<cr>
+nnoremap <leader>tj :tabprevious<cr>
+nnoremap <leader>tn :tabnew<cr>
 map <up> <nop>
 map <down> <nop>
 map <left> <nop>
