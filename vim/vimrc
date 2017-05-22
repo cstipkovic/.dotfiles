@@ -22,6 +22,8 @@ call plug#begin('~/.vim/plugged')
 	Plug 'einars/js-beautify'
 	Plug 'mileszs/ack.vim'
 	Plug 'c.vim'
+	Plug 'isruslan/vim-es6'
+	Plug 'heavenshell/vim-jsdoc'
 call plug#end()
 
 " Options
