@@ -5,7 +5,7 @@
 call plug#begin('~/.vim/plugged')
 	Plug 'scrooloose/nerdtree'
 	Plug 'editorconfig/editorconfig-vim'
-	Plug 'joshdick/onedark.vim'
+	"Plug 'joshdick/onedark.vim'
 	Plug 'jistr/vim-nerdtree-tabs'
 	Plug 'kien/ctrlp.vim'
 	Plug 'wakatime/vim-wakatime'
@@ -24,12 +24,14 @@ call plug#begin('~/.vim/plugged')
 	Plug 'c.vim'
 	Plug 'isruslan/vim-es6'
 	Plug 'heavenshell/vim-jsdoc'
+	Plug 'tomasiser/vim-code-dark'
 call plug#end()
 
 " Options
 syntax enable
 set number
-colorscheme onedark
+"colorscheme onedark
+colorscheme codedark
 set cursorline
 set nowrap
 set tw=120
@@ -66,7 +68,8 @@ imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 
 " Airline
 set laststatus=2
-let g:airline_theme = 'onedark'
+"let g:airline_theme = 'onedark'
+let g:airline_theme = 'codedark'
 let g:airline#extensions#tabline#enabled#branch = 1
 
 " NerdTree
