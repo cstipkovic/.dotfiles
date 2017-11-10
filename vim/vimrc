@@ -23,6 +23,7 @@ call plug#begin('~/.vim/plugged')
 	Plug 'mileszs/ack.vim'
 	Plug 'isruslan/vim-es6'
 	Plug 'heavenshell/vim-jsdoc'
+	Plug 'mxw/vim-jsx'
 call plug#end()
 
 " Options
