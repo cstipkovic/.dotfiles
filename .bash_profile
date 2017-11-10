@@ -1,6 +1,12 @@
-# Alias
+# .aliasrc
+
 alias ls='ls -G'
+alias rm='rm -i'
 alias ll='ls -alF'
+
+# Alias Intellij Mac
+alias intellij='/Applications/IntelliJ\ IDEA.app/Contents/MacOS/idea'
+
 
 # Setting GIT prompt
 c_cyan=`tput setaf 6`
@@ -35,3 +41,6 @@ parse_git_branch () {
 export PS1='${c_green}[\u@\[ \]\W\[\]\[\[$(branch_color)\] $(parse_git_branch)\[\]]${c_sgr0}\n'
 
 source ~/.git-completion.bash
+
+export NVM_DIR="$HOME/.nvm"
+  . "/usr/local/opt/nvm/nvm.sh"
