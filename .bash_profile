@@ -6,7 +6,7 @@ alias ll='ls -alF'
 alias tree='tree -C'
 
 # Alias Intellij Mac
-alias intellij='/Applications/IntelliJ\ IDEA.app/Contents/MacOS/idea'
+alias idea='open -a "`ls -dt /Applications/IntelliJ\ IDEA*|head -1`"'
 
 
 # Setting GIT prompt
