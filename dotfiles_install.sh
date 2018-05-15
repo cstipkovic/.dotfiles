@@ -5,8 +5,8 @@ os_name=$(uname -s)
 
 # Linux
 _linux_os() {
-	ln -s ~/.dotfiles/.bashrc ~/
-	ln -s ~/.dotfiles/vim/.vimrc ~/
+	ln -s ~/.dotfiles/bashrc ~/.bashrc
+	ln -s ~/.dotfiles/vim/vimrc ~/.vimrc
 }
 
 if [ $os_name = "Darwin" ] 
