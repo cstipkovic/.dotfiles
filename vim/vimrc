@@ -28,6 +28,7 @@ call plug#end()
 
 " Options
 syntax enable
+set linespace=3
 set number
 colorscheme onedark
 set cursorline
