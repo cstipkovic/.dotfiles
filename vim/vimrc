@@ -25,7 +25,6 @@ Plug 'isruslan/vim-es6'
 Plug 'heavenshell/vim-jsdoc'
 Plug 'mxw/vim-jsx'
 Plug 'lervag/vimtex'
-Plug 'w0rp/ale'
 call plug#end()
 
 " Options
