@@ -1,30 +1,31 @@
- "curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+"curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 "   https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 " Vim-Plug - Plugins
 call plug#begin('~/.vim/plugged')
-	Plug 'scrooloose/nerdtree'
-	Plug 'editorconfig/editorconfig-vim'
-	Plug 'joshdick/onedark.vim'
-	Plug 'jistr/vim-nerdtree-tabs'
-	Plug 'kien/ctrlp.vim'
-	Plug 'wakatime/vim-wakatime'
-	Plug 'scrooloose/syntastic'
-	Plug 'vim-airline/vim-airline'
-	Plug 'vim-airline/vim-airline-themes'
-	Plug 'airblade/vim-gitgutter'
-	Plug 'scrooloose/nerdcommenter'
-	Plug 'jiangmiao/auto-pairs'
-	Plug 'isruslan/vim-es6'
-	Plug 'mustache/vim-mustache-handlebars'
-	Plug 'mattn/emmet-vim'
-	Plug 'tpope/vim-fugitive'
-	Plug 'einars/js-beautify'
-	Plug 'mileszs/ack.vim'
-	Plug 'isruslan/vim-es6'
-	Plug 'heavenshell/vim-jsdoc'
-	Plug 'mxw/vim-jsx'
-	Plug 'lervag/vimtex'
+Plug 'scrooloose/nerdtree'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'joshdick/onedark.vim'
+Plug 'jistr/vim-nerdtree-tabs'
+Plug 'kien/ctrlp.vim'
+Plug 'wakatime/vim-wakatime'
+Plug 'scrooloose/syntastic'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'airblade/vim-gitgutter'
+Plug 'scrooloose/nerdcommenter'
+Plug 'jiangmiao/auto-pairs'
+Plug 'isruslan/vim-es6'
+Plug 'mustache/vim-mustache-handlebars'
+Plug 'mattn/emmet-vim'
+Plug 'tpope/vim-fugitive'
+Plug 'einars/js-beautify'
+Plug 'mileszs/ack.vim'
+Plug 'isruslan/vim-es6'
+Plug 'heavenshell/vim-jsdoc'
+Plug 'mxw/vim-jsx'
+Plug 'lervag/vimtex'
+Plug 'w0rp/ale'
 call plug#end()
 
 " Options
@@ -79,6 +80,7 @@ let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-stand
 
 " Arquivos ignorados
 set wildignore+=/bin/*,/node_modules/*,*/dist/*,*.so,*.class,*.git,*/.git/*,*.tar.gz,*.zip,*.bz2,*/tmp/*,*/.tmp/*,*/target/*,*/build/*,/*pagseguro-*,*/sandbox/*,*/sap-integration*,*/red-batch/*,*/rabbit-support/*,*/testes-integracao/*,*/efrete*,*/content-policy*,*/admin*
+
 " Indentacao
 set tabstop=4 softtabstop=0 shiftwidth=4 smarttab
 set listchars=tab:>\ ,trail:·,extends:\#,nbsp:.
