@@ -3,32 +3,35 @@
 
 " Vim-Plug - Plugins
 call plug#begin('~/.vim/plugged')
-Plug 'scrooloose/nerdtree'
-Plug 'editorconfig/editorconfig-vim'
-Plug 'joshdick/onedark.vim'
-Plug 'jistr/vim-nerdtree-tabs'
-Plug 'kien/ctrlp.vim'
-Plug 'wakatime/vim-wakatime'
-Plug 'scrooloose/syntastic'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'airblade/vim-gitgutter'
-Plug 'scrooloose/nerdcommenter'
-Plug 'jiangmiao/auto-pairs'
-Plug 'isruslan/vim-es6'
-Plug 'mustache/vim-mustache-handlebars'
-Plug 'mattn/emmet-vim'
-Plug 'tpope/vim-fugitive'
-Plug 'einars/js-beautify'
-Plug 'mileszs/ack.vim'
-Plug 'isruslan/vim-es6'
-Plug 'heavenshell/vim-jsdoc'
-Plug 'mxw/vim-jsx'
-Plug 'lervag/vimtex'
+	Plug 'pangloss/vim-javascript', {'for': 'javascript'}
+	Plug 'sheerun/vim-polyglot'
+	Plug 'scrooloose/nerdtree'
+	Plug 'editorconfig/editorconfig-vim'
+	Plug 'joshdick/onedark.vim'
+	Plug 'jistr/vim-nerdtree-tabs'
+	Plug 'kien/ctrlp.vim'
+	Plug 'wakatime/vim-wakatime'
+	Plug 'scrooloose/syntastic'
+	Plug 'vim-airline/vim-airline'
+	Plug 'vim-airline/vim-airline-themes'
+	Plug 'airblade/vim-gitgutter'
+	Plug 'scrooloose/nerdcommenter'
+	Plug 'jiangmiao/auto-pairs'
+	Plug 'isruslan/vim-es6'
+	Plug 'mustache/vim-mustache-handlebars'
+	Plug 'mattn/emmet-vim'
+	Plug 'tpope/vim-fugitive'
+	Plug 'einars/js-beautify'
+	Plug 'mileszs/ack.vim'
+	Plug 'isruslan/vim-es6'
+	Plug 'heavenshell/vim-jsdoc'
+	Plug 'mxw/vim-jsx',{'for': 'javascript.jsx'}
+	Plug 'lervag/vimtex'
 call plug#end()
 
 " Options
 syntax enable
+filetype plugin indent on
 set linespace=3
 set number
 colorscheme onedark
