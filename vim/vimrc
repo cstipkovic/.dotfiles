@@ -3,7 +3,7 @@
 
 " Vim-Plug - Plugins
 call plug#begin('~/.vim/plugged')
-	Plug 'pangloss/vim-javascript', {'for': 'javascript'}
+	Plug 'pangloss/vim-javascript'
 	Plug 'sheerun/vim-polyglot'
 	Plug 'scrooloose/nerdtree'
 	Plug 'editorconfig/editorconfig-vim'
@@ -25,7 +25,6 @@ call plug#begin('~/.vim/plugged')
 	Plug 'mileszs/ack.vim'
 	Plug 'isruslan/vim-es6'
 	Plug 'heavenshell/vim-jsdoc'
-	Plug 'mxw/vim-jsx',{'for': 'javascript.jsx'}
 	Plug 'lervag/vimtex'
 call plug#end()
 
@@ -71,6 +70,9 @@ imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 set laststatus=2
 let g:airline_theme = 'onedark'
 let g:airline#extensions#tabline#enabled#branch = 1
+
+" JsDoc Plugin
+let g:javascript_plugin_jsdoc = 1
 
 " NerdTree
 nnoremap <leader>\ :NERDTreeToggle<cr>
