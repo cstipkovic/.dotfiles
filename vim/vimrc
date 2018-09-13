@@ -31,7 +31,7 @@ call plug#end()
 " Options
 syntax enable
 filetype plugin indent on
-set linespace=3
+set linespace=4
 set number
 colorscheme onedark
 set cursorline
