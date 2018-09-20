@@ -26,6 +26,7 @@ call plug#begin('~/.vim/plugged')
 	Plug 'isruslan/vim-es6'
 	Plug 'heavenshell/vim-jsdoc'
 	Plug 'lervag/vimtex'
+	Plug 'junegunn/fzf'
 call plug#end()
 
 " Options
