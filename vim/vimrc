@@ -33,7 +33,11 @@ call plug#begin('~/.vim/plugged')
 	Plug 'othree/yajs.vim'
 	Plug 'godlygeek/tabular'
 	Plug 'garbas/vim-snipmate', { 'for': ['c', 'cpp'] }
-	Plug 'Valloric/YouCompleteMe', { 'do': 'python2 install.py --clang-completer --tern-complete --java-completer' }
+	Plug 'MarcWeber/vim-addon-mw-utils', { 'for': ['c', 'cpp'] }
+	Plug 'tomtom/tlib_vim', { 'for': ['c', 'cpp'] }
+	Plug 'honza/vim-snippets', { 'for': ['c', 'cpp'] }
+	Plug 'rhysd/vim-wasm'
+	"Plug 'Valloric/YouCompleteMe', { 'do': 'python2 install.py --clang-completer --tern-complete --java-completer' }
 call plug#end()
 
 " Options
