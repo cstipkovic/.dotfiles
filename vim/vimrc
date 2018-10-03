@@ -3,7 +3,7 @@
 
 " Vim-Plug - Plugins
 call plug#begin('~/.vim/plugged')
-	Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+	Plug 'pangloss/vim-javascript', { 'for': 'js' }
 	Plug 'sheerun/vim-polyglot'
 	Plug 'scrooloose/nerdtree'
 	Plug 'editorconfig/editorconfig-vim'
