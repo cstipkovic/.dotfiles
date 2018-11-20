@@ -2,7 +2,7 @@
 
 alias ls='ls -G'
 alias rm='rm -i'
-alias ll='ls -alF'
+alias ll='ls -alhF'
 alias tree='tree -C'
 
 # Alias Intellij Mac
@@ -54,3 +54,6 @@ export NVM_DIR="$HOME/.nvm"
 
 # added by Anaconda3 5.2.0 installer
 export PATH="/anaconda3/bin:$PATH"
+
+# adding libclang for compile JS (SpiderMonkey)
+export LIBCLANG_PATH="/Library/Developer/CommandLineTools/usr/lib/libclang.dylib"
