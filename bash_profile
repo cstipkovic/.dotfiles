@@ -47,13 +47,28 @@ echo -e $gitver
 PS1='${c_green}\u@\[ \]\W\[\]\[\[$(branch_color)\] $(parse_git_branch)\[\]${c_sgr0}\nλ '
 
 source ~/.git-completion.bash
+[ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
 
 # NVM
 export NVM_DIR="$HOME/.nvm"
   . "/usr/local/opt/nvm/nvm.sh"
 
-# added by Anaconda3 5.2.0 installer
-export PATH="/anaconda3/bin:$PATH"
+# Python Version Manager
+#eval "$(pyenv init -)"
+
+# Pip (Package) Python Manager
+#eval "$(pipenv --completion)"
+
+# RVM for Ruby
+if [[ -s $HOME/.rvm/scripts/rvm ]]; then
+  source $HOME/.rvm/scripts/rvm;
+fi
 
 # adding libclang for compile JS (SpiderMonkey)
 export LIBCLANG_PATH="/Library/Developer/CommandLineTools/usr/lib/libclang.dylib"
+export PATH="/usr/local/opt/llvm/bin:$PATH"
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
+export JAVA_HOME=$(/usr/libexec/java_home)
+export PATH="/usr/local/Cellar/maven@3.3/3.3.9/bin:$PATH"

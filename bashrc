@@ -161,6 +161,10 @@ PS1='${c_green}[\u@\[ \]\W\[\]\[\[$(branch_color)\] $(parse_git_branch)\[\]]${c_
 export PS1='\[\033[01;32m\]\u\[\033[01;34m\]@\W\[\033[31m\]$(__git_ps1 "(%s)") \[\033[01;34m\]$\[\033[00m\]\n'
 
 source ~/.dotfiles/.git-completion.bash
+[ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
 
 # Remove history duplicates
 export HISTCONTROL=ignoreboth:erasedups
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
