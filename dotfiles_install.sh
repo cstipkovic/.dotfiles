@@ -14,6 +14,7 @@ _darwin_os() {
 	ln -s ~/.dotfiles/bashrc ~/.bashrc
 	ln -s ~/.dotfiles/vim/vimrc ~/.vimrc
 	ln -s ~/.dotfiles/bash_profile ~/.bash_profile
+	ln -s ~/.dotfiles/.git-completion.bash ~/.git-completion.bash
 }
 
 if [ $os_name = "Darwin" ] 
