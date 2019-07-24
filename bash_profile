@@ -71,4 +71,6 @@ export PATH="/usr/local/opt/llvm/bin:$PATH"
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 export JAVA_HOME=$(/usr/libexec/java_home)
-export PATH="/usr/local/Cellar/maven@3.3/3.3.9/bin:$PATH"
+export PATH="/usr/local/opt/maven@3.3/bin:$PATH"
+export PATH="/usr/local/opt/maven@3.5/bin:$PATH"
+
