@@ -17,6 +17,9 @@ export PS1='\w \[\033[031m\] ($_get_git_branch)\n$ '
 
 echo 'export PATH="/usr/local/opt/maven@3.5/bin:$PATH"' >> ~/.bash_profile
 
+# For Pyenv
+eval "$(pyenv init -)"
+
 export NVM_DIR="$HOME/.nvm"
   [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
   [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion

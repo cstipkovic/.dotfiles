@@ -44,7 +44,7 @@ echo -e $gitver
 }
 
 #It's important to escape colors with \[ to indicate the length is 0
-PS1='${c_green}\u@\[ \]\W\[\]\[\[$(branch_color)\] $(parse_git_branch)\[\]${c_sgr0}\nλ '
+PS1='${c_green}\u@\[ \]\W\[\]\[\[$(branch_color)\] $(parse_git_branch)\[\]${c_sgr0}\n$ '
 
 source ~/.git-completion.bash
 [ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
@@ -73,4 +73,10 @@ export PATH="/usr/local/opt/llvm/bin:$PATH"
 export JAVA_HOME=$(/usr/libexec/java_home)
 export PATH="/usr/local/opt/maven@3.3/bin:$PATH"
 export PATH="/usr/local/opt/maven@3.5/bin:$PATH"
+
+# For pyenv
+eval "$(pyenv init -)"
+
+export PATH="/usr/local/sbin:$PATH"
+export BASH_SILENCE_DEPRECATION_WARNING=1
 
