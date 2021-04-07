@@ -8,7 +8,6 @@ alias tree='tree -C'
 # Alias Intellij Mac
 alias idea='open -a "`ls -dt /Applications/IntelliJ\ IDEA*|head -1`"'
 
-
 # Setting GIT prompt
 c_cyan=`tput setaf 6`
 c_red=`tput setaf 1`
@@ -43,6 +42,9 @@ parse_git_branch ()
     fi
 echo -e $gitver
 }
+
+# Run on terminal starts
+cat ~/.welcome-terminal.txt
 
 #It's important to escape colors with \[ to indicate the length is 0
 PS1='${c_blue}\[(\t)\] ${c_green}\u@\[ \]\W\[\]\[\[$(branch_color)\] $(parse_git_branch)\[\]${c_sgr0}\n$ '
