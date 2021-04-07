@@ -25,3 +25,8 @@ git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 - [tomasr/molokai](https://github.com/tomasr/molokai)
 - [kien/ctrlp.vim](https://github.com/kien/ctrlp.vim)
 - [rking/ag.vim](https://github.com/rking/ag.vim)
+
+## Figlet command
+```sh
+figlet -w 200 -k "Zdravo,  Mr.  Stipkovic" > ~/.dotfiles/welcome.txt
+```
