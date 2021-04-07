@@ -28,5 +28,5 @@ git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
 ## Figlet command
 ```sh
-figlet -w 200 -k "Zdravo,  Mr.  Stipkovic" > ~/.dotfiles/welcome.txt
+figlet -w 200 -f small -k "Zdravo,  Mr.  Stipkovic" > ~/.dotfiles/welcome.txt
 ```
