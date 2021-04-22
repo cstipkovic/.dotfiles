@@ -7,6 +7,8 @@ os_name=$(uname -s)
 _linux_os() {
 	ln -s ~/.dotfiles/bashrc ~/.bashrc
 	ln -s ~/.dotfiles/vim/vimrc ~/.vimrc
+	ln -s ~/.dotfiles/.git-completion.bash ~/.git-completion.bash
+	ln -s ~/.dotfiles/welcome-terminal.txt ~/.welcome-terminal.txt
 }
 
 # Mac OS X Darwin

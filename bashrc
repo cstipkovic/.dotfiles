@@ -156,8 +156,15 @@ parse_git_branch () {
 	echo -e $gitver
 }
 
+# Run on terminal starts
+cat ~/.welcome-terminal.txt
+
+# NVM
+export NVM_DIR="$HOME/.nvm"
+  . "/usr/local/opt/nvm/nvm.sh"
+
 #It's important to escape colors with \[ to indicate the length is 0
-PS1='${c_green}[\u@\[ \]\W\[\]\[\[$(branch_color)\] $(parse_git_branch)\[\]]${c_sgr0}\n'
+PS1='${c_blue}\[(\t)\] ${c_green}\u@\[ \]\W\[\]\[\[$(branch_color)\] $(parse_git_branch)\[\]${c_sgr0}\n$ '
 export PS1='\[\033[01;32m\]\u\[\033[01;34m\]@\W\[\033[31m\]$(__git_ps1 "(%s)") \[\033[01;34m\]$\[\033[00m\]\n'
 
 source ~/.dotfiles/.git-completion.bash
