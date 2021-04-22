@@ -129,31 +129,34 @@ c_cyan=`tput setaf 6`
 c_red=`tput setaf 1`
 c_green=`tput setaf 2`
 c_sgr0=`tput sgr0`
+c_blue=`tput setaf 4`
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-
-branch_color () {
-	if [ git rev-parse --git-dir >/dev/null 2>&1 ]; then
-		color=""
-		if [  git diff --quiet 2>/dev/null >&2 ]; then
-			color=${c_red}
-		else
-			color=${c_green}
-		fi
-	else
-		return 0
-	fi
-	echo -n $color
+branch_color ()
+{
+    if git rev-parse --git-dir >/dev/null 2>&1
+    then
+        color=""
+        if git diff --quiet 2>/dev/null >&2
+        then
+           color=${c_red}
+        else
+          color=${c_green}
+        fi
+    else
+        return 0
+    fi
+    echo -n $color
 }
 
-parse_git_branch () {
-	if [  git rev-parse --git-dir >/dev/null 2>&1 ]; then
-		gitver=" ("$(git branch 2>/dev/null| sed -n '/^\*/s/^\* //p')")"
-	else
-		return 0
-	fi
-	echo -e $gitver
+parse_git_branch ()
+{
+    if git rev-parse --git-dir >/dev/null 2>&1
+    then
+      gitver=" ("$(git branch 2>/dev/null| sed -n '/^\*/s/^\* //p')")"
+    else
+        return 0
+    fi
+echo -e $gitver
 }
 
 # Run on terminal starts
