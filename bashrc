@@ -162,16 +162,9 @@ echo -e $gitver
 # Run on terminal starts
 cat ~/.welcome-terminal.txt
 
-# NVM
-export NVM_DIR="$HOME/.nvm"
-  . "/usr/local/opt/nvm/nvm.sh"
-
 #It's important to escape colors with \[ to indicate the length is 0
 PS1='${c_blue}\[(\t)\] ${c_green}\u@\[ \]\W\[\]\[\[$(branch_color)\] $(parse_git_branch)\[\]${c_sgr0}\n$ '
 export PS1='\[\033[01;32m\]\u\[\033[01;34m\]@\W\[\033[31m\]$(__git_ps1 "(%s)") \[\033[01;34m\]$\[\033[00m\]\n'
-
-source ~/.dotfiles/.git-completion.bash
-[ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
 
 # Remove history duplicates
 export HISTCONTROL=ignoreboth:erasedups
@@ -179,3 +172,7 @@ export HISTCONTROL=ignoreboth:erasedups
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
 
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
