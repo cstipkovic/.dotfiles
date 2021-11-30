@@ -35,4 +35,3 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 _dotfile() {
 	echo "dotfiles"
 }
-
