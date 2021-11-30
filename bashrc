@@ -1,8 +1,8 @@
 # .aliasrc
 
-alias ls='ls -G'
-alias rm='rm -i'
-alias ll='ls -alhF'
+alias ls='ls -G --color=auto'
+alias rm='rm -i --color=auto'
+alias ll='ls -alhF --color=auto'
 alias tree='tree -C'
 
 # Alias Intellij Mac
@@ -49,8 +49,10 @@ cat ~/.welcome-terminal.txt
 #It's important to escape colors with \[ to indicate the length is 0
 PS1='${c_blue}\[(\t)\] ${c_green}\u@\[ \]\W\[\]\[\[$(branch_color)\] $(parse_git_branch)\[\]${c_sgr0}\n$ '
 
-source ~/.git-completion.bash
-[ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
+# Git completion for bash
+if [ -f ~/.git-completion.bash ]; then
+  . ~/.git-completion.bash
+fi
 
 # NVM
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"

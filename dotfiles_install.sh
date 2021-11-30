@@ -5,6 +5,10 @@ os_name=$(uname -s)
 
 # Linux
 _linux_os() {
+	curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ~/.git-completion.bash
+
+	rm -rf ~/.bashrc
+
 	ln -s ~/.dotfiles/bashrc ~/.bashrc
 	ln -s ~/.dotfiles/vim/vimrc ~/.vimrc
 	ln -s ~/.dotfiles/.git-completion.bash ~/.git-completion.bash
