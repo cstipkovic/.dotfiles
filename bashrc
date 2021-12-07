@@ -1,7 +1,7 @@
 # .aliasrc
 
 alias ls='ls -G --color=auto'
-alias rm='rm -i --color=auto'
+alias rm='rm -i'
 alias ll='ls -alhF --color=auto'
 alias tree='tree -C'
 
@@ -47,7 +47,7 @@ echo -e $gitver
 cat ~/.welcome-terminal.txt
 
 #It's important to escape colors with \[ to indicate the length is 0
-PS1='${c_blue}\[(\t)\] ${c_green}\u@\[ \]\W\[\]\[\[$(branch_color)\] $(parse_git_branch)\[\]${c_sgr0}\n$ '
+PS1='\e[0;36m\[(\t)\] ${c_green}\u@\[ \]\W\[\]\[\[$(branch_color)\] $(parse_git_branch)\[\]${c_sgr0}\n$ '
 
 # Git completion for bash
 if [ -f ~/.git-completion.bash ]; then
