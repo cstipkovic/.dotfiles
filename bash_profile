@@ -1,3 +1,5 @@
+# Fig pre block. Keep at the top of this file.
+[[ -f "$HOME/.fig/shell/bash_profile.pre.bash" ]] && builtin source "$HOME/.fig/shell/bash_profile.pre.bash"
 # .aliasrc
 
 alias ls='ls -G'
@@ -40,7 +42,7 @@ parse_git_branch ()
     else
         return 0
     fi
-echo -e $gitver
+    echo -e $gitver
 }
 
 # Run on terminal starts
@@ -49,6 +51,7 @@ cat ~/.welcome-terminal.txt
 #It's important to escape colors with \[ to indicate the length is 0
 PS1='${c_blue}\[(\t)\] ${c_green}\u@\[ \]\W\[\]\[\[$(branch_color)\] $(parse_git_branch)\[\]${c_sgr0}\n$ '
 
+# Git Completion
 source ~/.git-completion.bash
 [ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
 
@@ -78,8 +81,13 @@ export PATH="/usr/local/opt/maven@3.3/bin:$PATH"
 export PATH="/usr/local/opt/maven@3.5/bin:$PATH"
 
 # For pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init --path)"
 eval "$(pyenv init -)"
 
 export PATH="/usr/local/sbin:$PATH"
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
+# Fig post block. Keep at the bottom of this file.
+[[ -f "$HOME/.fig/shell/bash_profile.post.bash" ]] && builtin source "$HOME/.fig/shell/bash_profile.post.bash"
