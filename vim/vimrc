@@ -7,10 +7,7 @@ call plug#begin('~/.vim/plugged')
 	Plug 'sheerun/vim-polyglot'
 	Plug 'scrooloose/nerdtree'
 	Plug 'editorconfig/editorconfig-vim'
-<<<<<<< HEAD
 	Plug 'dracula/vim', { 'as': 'dracula' }
-=======
->>>>>>> b7d3893 (Updating .bash and git completion)
 	Plug 'jistr/vim-nerdtree-tabs'
 	Plug 'kien/ctrlp.vim'
 	Plug 'wakatime/vim-wakatime'
@@ -49,10 +46,7 @@ syntax enable
 filetype plugin indent on
 set linespace=4
 set number
-<<<<<<< HEAD
 colorscheme dracula
-=======
->>>>>>> b7d3893 (Updating .bash and git completion)
 set cursorline
 set nowrap
 set tw=120
