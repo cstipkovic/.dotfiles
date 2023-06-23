@@ -57,7 +57,9 @@ source ~/.git-completion.bash
 
 # NVM
 export NVM_DIR="$HOME/.nvm"
-  . "/usr/local/opt/nvm/nvm.sh"
+  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
 
 # Python Version Manager
 #eval "$(pyenv init -)"
@@ -76,9 +78,12 @@ export PATH="/usr/local/opt/llvm/bin:$PATH"
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
-export JAVA_HOME=$(/usr/libexec/java_home)
-export PATH="/usr/local/opt/maven@3.3/bin:$PATH"
-export PATH="/usr/local/opt/maven@3.5/bin:$PATH"
+# For Java
+# export PATH="$HOME/.jenv/bin:$PATH"
+# eval "$(jenv init -)"
+# export JAVA_HOME=$(/usr/libexec/java_home)
+# export PATH="/usr/local/opt/maven@3.3/bin:$PATH"
+# export PATH="/usr/local/opt/maven@3.5/bin:$PATH"
 
 # For pyenv
 export PYENV_ROOT="$HOME/.pyenv"
@@ -88,6 +93,10 @@ eval "$(pyenv init -)"
 
 export PATH="/usr/local/sbin:$PATH"
 export BASH_SILENCE_DEPRECATION_WARNING=1
+
+# Set PATH, MANPATH, etc., for Homebrew.
+eval "$(/opt/homebrew/bin/brew shellenv)"
+export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
 
 # Fig post block. Keep at the bottom of this file.
 [[ -f "$HOME/.fig/shell/bash_profile.post.bash" ]] && builtin source "$HOME/.fig/shell/bash_profile.post.bash"

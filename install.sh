@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+
 # The dotfile initial
 
 os_name=$(uname -s)
@@ -24,18 +25,29 @@ _darwin_os() {
 	ln -s ~/.dotfiles/welcome-terminal.txt ~/.welcome-terminal.txt
 }
 
-if [ $os_name = "Darwin" ] 
-then
-	_darwin_os
-else
-	_linux_os
-fi
-
 echo "Getting Vim-Plug"
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 	https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 # Common functions
+_clearExistingFiles() {
+    # rm -rf ~/.bashrc
+    rm -rf ~/.vimrc
+    # rm -rf ~/.bash_profile
+    rm -rf ~/.git-completion.bash
+    rm -rf ~/.welcome-terminal.txt
+}
+
 _dotfile() {
 	echo "dotfiles"
 }
+
+if [ $os_name = "Darwin" ]
+then
+    echo "Configuring for Mac OS"
+    # _clearExistingFiles
+	_darwin_os
+else
+    echo "Configuring for Linux"
+	_linux_os
+fi

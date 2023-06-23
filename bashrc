@@ -1,3 +1,5 @@
+# Fig pre block. Keep at the top of this file.
+[[ -f "$HOME/.fig/shell/bashrc.pre.bash" ]] && builtin source "$HOME/.fig/shell/bashrc.pre.bash"
 # .aliasrc
 	# ~/.bashrc: executed by bash(1) for non-login shells.
 	# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
