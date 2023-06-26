@@ -84,8 +84,8 @@ eval "$(pyenv virtualenv-init -)"
 export PATH="/usr/local/sbin:$PATH"
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
-# export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-
 # Fig post block. Keep at the bottom of this file.
 [[ -f "$HOME/.fig/shell/bashrc.post.bash" ]] && builtin source "$HOME/.fig/shell/bashrc.post.bash"
+
+# Load Angular CLI autocompletion.
+source <(ng completion script)
