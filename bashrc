@@ -10,9 +10,6 @@ alias rm='rm -i'
 alias ll='ls -alhF --color=auto'
 alias tree='tree -C'
 
-# Alias Intellij Mac
-alias idea='open -a "`ls -dt /Applications/IntelliJ\ IDEA*|head -1`"'
-
 # Setting GIT prompt
 c_cyan=`tput setaf 6`
 c_red=`tput setaf 1`
@@ -63,6 +60,9 @@ fi
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
+# For Java
+export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
+
 # Python Version Manager
 #eval "$(pyenv init -)"
 
@@ -84,8 +84,8 @@ eval "$(pyenv virtualenv-init -)"
 export PATH="/usr/local/sbin:$PATH"
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
-# Fig post block. Keep at the bottom of this file.
-[[ -f "$HOME/.fig/shell/bashrc.post.bash" ]] && builtin source "$HOME/.fig/shell/bashrc.post.bash"
-
 # Load Angular CLI autocompletion.
 source <(ng completion script)
+
+# Fig post block. Keep at the bottom of this file.
+[[ -f "$HOME/.fig/shell/bashrc.post.bash" ]] && builtin source "$HOME/.fig/shell/bashrc.post.bash"

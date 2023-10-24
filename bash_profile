@@ -7,9 +7,6 @@ alias rm='rm -i'
 alias ll='ls -alhF'
 alias tree='tree -C'
 
-# Alias Intellij Mac
-alias idea='open -a "`ls -dt /Applications/IntelliJ\ IDEA*|head -1`"'
-
 # Setting GIT prompt
 c_cyan=`tput setaf 6`
 c_red=`tput setaf 1`
