@@ -1,4 +1,5 @@
 # dotvim
+
 My vim configuration files
 
 ## Steps to use
@@ -12,7 +13,7 @@ git clone https://github.com/cstipkovic/dotvim.git ~/.vim
 Then create a symbolic link to `.vim/vimrc`:
 
 ```sh
-ln-s ~/.vim/vimrc ~/.vimrc
+ln -s ~/.vim/vimrc ~/.vimrc
 ```
 
 ```sh
@@ -27,6 +28,7 @@ git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 - [rking/ag.vim](https://github.com/rking/ag.vim)
 
 ## Figlet command
+
 ```sh
 figlet -w 200 -f small -k "Zdravo,  Mr.  Stipkovic" > ~/.dotfiles/welcome.txt
 ```
