@@ -8,10 +8,11 @@ os_name=$(uname -s)
 _linux_os() {
 	curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ~/.git-completion.bash
 
-	rm -rf ~/.bashrc
+	_backupExistingFile ~/.bashrc
 
 	ln -s ~/.dotfiles/bashrc ~/.bashrc
 	ln -s ~/.dotfiles/vim/vimrc ~/.vimrc
+	ln -s ~/.dotfiles/tmux/tmux.conf ~/.tmux.conf
 	ln -s ~/.dotfiles/.git-completion.bash ~/.git-completion.bash
 	ln -s ~/.dotfiles/welcome-terminal.txt ~/.welcome-terminal.txt
 }
@@ -24,6 +25,7 @@ _darwin_os() {
 
 	ln -s ~/.dotfiles/bashrc ~/.bashrc
 	ln -s ~/.dotfiles/vim/vimrc ~/.vimrc
+	ln -s ~/.dotfiles/tmux/tmux.conf ~/.tmux.conf
 	ln -s ~/.dotfiles/bash_profile ~/.bash_profile
     ln -s ~/.dotfiles/profile ~/.profile
 	ln -s ~/.dotfiles/welcome-terminal.txt ~/.welcome-terminal.txt
@@ -37,12 +39,22 @@ _vim_plugins() {
 }
 
 # Common functions
+
+# Moves an existing file/symlink aside to <file>.bak-<timestamp> instead of deleting it.
+_backupExistingFile() {
+    local target="$1"
+    if [ -e "$target" ] || [ -L "$target" ]; then
+        mv "$target" "${target}.bak-$(date +%Y%m%d%H%M%S)"
+    fi
+}
+
 _clearExistingFiles() {
-    rm -rf ~/.bashrc
-    rm -rf ~/.vimrc
-    rm -rf ~/.bash_profile
-    rm -rf ~/.git-completion.bash
-    rm -rf ~/.welcome-terminal.txt
+    _backupExistingFile ~/.bashrc
+    _backupExistingFile ~/.vimrc
+    _backupExistingFile ~/.tmux.conf
+    _backupExistingFile ~/.bash_profile
+    _backupExistingFile ~/.git-completion.bash
+    _backupExistingFile ~/.welcome-terminal.txt
 }
 
 _dotfile() {
