@@ -30,8 +30,21 @@ alias tree='tree -C'
 # export BASH_SILENCE_DEPRECATION_WARNING=1
 
 # adding libclang for compile JS (SpiderMonkey)
-export LIBCLANG_PATH="/Library/Developer/CommandLineTools/usr/lib/libclang.dylib"
-export PATH="/usr/local/opt/llvm/bin:$PATH"
+# export LIBCLANG_PATH="/Library/Developer/CommandLineTools/usr/lib/libclang.dylib"
+# export PATH="/usr/local/opt/llvm/bin:$PATH"
 
 # Load Angular CLI autocompletion.
 # source <(ng completion script)
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/cstipkovic/.lmstudio/bin"
+# End of LM Studio CLI section
+
+export PATH="$HOME/.local/bin:$PATH"
+
+export PATH="$HOME/bin:$PATH"
+
+# ai-memory binary
+export PATH="$HOME/Applications/ai-memory:$PATH"
+
+export PATH="/Users/cstipkovic/.local/bin:$PATH"

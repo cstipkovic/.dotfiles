@@ -3,11 +3,10 @@
 
 " Vim-Plug - Plugins
 call plug#begin('~/.vim/plugged')
-	Plug 'pangloss/vim-javascript', { 'for': 'js' }
+	Plug 'pangloss/vim-javascript', { 'for': ['js', 'tsx', 'jsx'] }
 	Plug 'sheerun/vim-polyglot'
 	Plug 'scrooloose/nerdtree'
 	Plug 'editorconfig/editorconfig-vim'
-	Plug 'dracula/vim', { 'as': 'dracula' }
 	Plug 'jistr/vim-nerdtree-tabs'
 	Plug 'kien/ctrlp.vim'
 	Plug 'wakatime/vim-wakatime'
@@ -21,7 +20,10 @@ call plug#begin('~/.vim/plugged')
 	Plug 'mustache/vim-mustache-handlebars'
 	Plug 'mattn/emmet-vim', { 'for': ['html', 'css'] }
 	Plug 'tpope/vim-fugitive'
-	Plug 'einars/js-beautify'
+    " post install (yarn install | npm install) then load plugin only for editing supported files
+    Plug 'prettier/vim-prettier', {
+        \ 'do': 'yarn install --frozen-lockfile --production',
+        \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'] }
 	Plug 'mileszs/ack.vim'
 	Plug 'isruslan/vim-es6'
 	Plug 'heavenshell/vim-jsdoc'
@@ -34,19 +36,19 @@ call plug#begin('~/.vim/plugged')
 	Plug 'godlygeek/tabular'
 	Plug 'garbas/vim-snipmate', { 'for': ['c', 'cpp'] }
 	Plug 'MarcWeber/vim-addon-mw-utils', { 'for': ['c', 'cpp'] }
-	Plug 'tomtom/tlib_vim', { 'for': ['c', 'cpp'] }
+    Plug 'tomtom/tlib_vim', { 'for': ['c', 'cpp'] }
 	Plug 'honza/vim-snippets', { 'for': ['c', 'cpp'] }
-	Plug 'rhysd/vim-wasm'
-	"Plug 'Valloric/YouCompleteMe', { 'do': 'python2 install.py --clang-completer --tern-complete --java-completer' }
-	"Plug 'joshdick/onedark.vim'
+    Plug 'rakr/vim-one'
+    Plug 'github/copilot.vim'
 call plug#end()
 
 " Options
 syntax enable
 filetype plugin indent on
+colorscheme one
 set linespace=4
 set number
-colorscheme dracula
+set background=dark
 set cursorline
 set nowrap
 set tw=120
@@ -56,7 +58,9 @@ set modifiable
 set backspace=2
 set autoread
 
-" Mapping
+" Shell config
+let $SHELL = "/bin/bash -l"
+
 let mapleader = ","
 " move cursor to the left window (vertical split)
 nnoremap <leader>wh <C-w>h
@@ -83,8 +87,8 @@ let g:user_emmet_expandabbr_key='<Tab>'
 autocmd FileType html,css EmmetInstall
 
 " Airline
+let g:airline_theme='one'
 set laststatus=2
-let g:airline_theme = 'dracula'
 let g:airline#extensions#tabline#enabled#branch = 1
 
 " JsDoc Plugin

@@ -1,6 +1,9 @@
 vim/autoload
 *.swp
 
+# Local secrets, never committed
+secrets.env
+
 node_modules/
 
 # Lock files
