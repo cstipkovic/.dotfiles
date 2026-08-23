@@ -52,3 +52,6 @@ PS1='${c_blue}\[(\t)\] ${c_green}\u@\[ \]\W\[\]\[\[$(branch_color)\] $(parse_git
 if [ -f ~/.git-completion.bash ]; then
   . ~/.git-completion.bash
 fi
+
+# Local secrets (API keys, tokens) — see secrets.env, not committed
+[ -f "$HOME/.dotfiles/secrets.env" ] && source "$HOME/.dotfiles/secrets.env"

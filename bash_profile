@@ -48,7 +48,6 @@ if command -v gh >/dev/null 2>&1; then
   fi
   unset _gh_token
 fi
-export PATH="$HOME/.local/bin:$PATH"
 
 # work-brain
 work-brain() {
@@ -68,8 +67,8 @@ export PATH="/Users/cstipkovic/.antigravity/antigravity/bin:$PATH"
 export PATH="/Users/cstipkovic/.antigravity-ide/antigravity-ide/bin:$PATH"
 [ -f ~/.bashrc ] && source ~/.bashrc
 
-# Descubra o caminho exato do binário rodando 'which claude' ou use o padrão do Node/npm
-CLAUDE_BIN=$(which claude)
+# Descubra o caminho exato do binário rodando 'command -v claude' ou use o padrão do Node/npm
+CLAUDE_BIN=$(command -v claude)
 
 # Cria os aliases apontando para diretórios de configuração isolados
 alias claude-m="CLAUDE_CONFIG_DIR=\"$HOME/.claude-majmun\" $CLAUDE_BIN"

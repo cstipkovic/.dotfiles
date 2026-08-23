@@ -8,9 +8,6 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 # mysql-client
 export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
 
-# Local secrets (API keys, tokens) — see secrets.env, not committed
-[ -f "$HOME/.dotfiles/secrets.env" ] && source "$HOME/.dotfiles/secrets.env"
-
 # Added by LM Studio CLI (lms)
 export PATH="$PATH:/Users/cstipkovic/.lmstudio/bin"
 # End of LM Studio CLI section
