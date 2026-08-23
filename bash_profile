@@ -13,7 +13,7 @@ export NVM_DIR="$HOME/.nvm"
   [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 # ######################################## Java ########################################
-export JAVA_HOME=`/usr/libexec/java_home -v 11`
+export JAVA_HOME=$(/usr/libexec/java_home -v 11)
 
 # Set PATH, MANPATH, etc., for Homebrew.
 eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -24,7 +24,7 @@ export SDKMAN_DIR="$HOME/.sdkman"
 
 # ######################################## Go Lang ########################################
 export GOPATH=$HOME/go
-export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+export PATH=$PATH:$GOPATH/bin
 export PATH="/opt/homebrew/opt/mysql@8.0/bin:$PATH"
 
 # mysql client

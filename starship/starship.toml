@@ -1,0 +1,65 @@
+# Basic starship prompt, styled after the old hand-rolled bash PS1:
+# (time) user@dir (branch) [status]
+# $
+
+format = """
+[($time )]($style)$username[@](white)$directory$git_branch$git_status
+$character"""
+
+[time]
+disabled = false
+time_format = "%T"
+style = "blue"
+
+[username]
+show_always = true
+style_user = "green bold"
+style_root = "red bold"
+format = "[$user]($style)"
+
+[directory]
+style = "bold cyan"
+truncation_length = 3
+truncate_to_repo = true
+
+[git_branch]
+format = " [($branch)]($style)"
+style = "yellow"
+
+[git_status]
+format = "[$all_status$ahead_behind]($style)"
+style = "red"
+conflicted = "="
+ahead = "⇡${count}"
+behind = "⇣${count}"
+diverged = "⇕⇡${ahead_count}⇣${behind_count}"
+untracked = "?"
+stashed = "$"
+modified = "!"
+staged = "+"
+renamed = "»"
+deleted = "✘"
+
+[character]
+success_symbol = "[\\$](bold white)"
+error_symbol = "[\\$](bold red)"
+
+# Toolchain version indicators — disable ones you don't want to see
+[nodejs]
+symbol = "node "
+format = "[$symbol$version]($style) "
+
+[golang]
+symbol = "go "
+format = "[$symbol$version]($style) "
+
+[java]
+symbol = "java "
+format = "[$symbol$version]($style) "
+
+[ruby]
+symbol = "ruby "
+format = "[$symbol$version]($style) "
+
+[docker_context]
+disabled = true

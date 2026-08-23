@@ -5,52 +5,32 @@ alias rm='rm -i'
 alias ll='ls -alhF --color=auto'
 alias tree='tree -C'
 
-# Setting GIT prompt
-c_cyan=`tput setaf 6`
-c_red=`tput setaf 1`
-c_green=`tput setaf 2`
-c_sgr0=`tput sgr0`
-c_blue=`tput setaf 4`
-
-branch_color ()
-{
-    if git rev-parse --git-dir >/dev/null 2>&1
-    then
-        color=""
-        if git diff --quiet 2>/dev/null >&2
-        then
-           color=${c_red}
-        else
-          color=${c_green}
-        fi
-    else
-        return 0
-    fi
-    echo -n $color
-}
-
-parse_git_branch ()
-{
-    if git rev-parse --git-dir >/dev/null 2>&1
-    then
-      gitver=" ("$(git branch 2>/dev/null| sed -n '/^\*/s/^\* //p')")"
-    else
-        return 0
-    fi
-    echo -e $gitver
-}
-
 # Run on terminal starts
-branch_color
-parse_git_branch
 cat ~/.welcome-terminal.txt
-
-#It's important to escape colors with \[ to indicate the length is 0
-PS1='${c_blue}\[(\t)\] ${c_green}\u@\[ \]\W\[\]\[\[$(branch_color)\] $(parse_git_branch)\[\]${c_sgr0}\n$ '
 
 # Git completion for bash
 if [ -f ~/.git-completion.bash ]; then
   . ~/.git-completion.bash
+fi
+
+# Prompt (starship — replaces the old hand-rolled branch_color/parse_git_branch/PS1)
+if command -v starship >/dev/null 2>&1; then
+  eval "$(starship init bash)"
+fi
+
+# zoxide — smarter `cd` (adds `z`/`zi`, also remaps `cd` when initialized this way)
+if command -v zoxide >/dev/null 2>&1; then
+  eval "$(zoxide init bash)"
+fi
+
+# fzf — fuzzy finder (Ctrl+R history, Ctrl+T files, Alt+C cd)
+if command -v fzf >/dev/null 2>&1; then
+  eval "$(fzf --bash)"
+fi
+
+# direnv — per-directory environment variables
+if command -v direnv >/dev/null 2>&1; then
+  eval "$(direnv hook bash)"
 fi
 
 # Local secrets (API keys, tokens) — see secrets.env, not committed

@@ -4,9 +4,10 @@ Personal configuration files for bash, vim, and tmux.
 
 ## What's here
 
-- `bash_profile`, `bashrc`, `profile` — bash configuration (aliases, git-aware prompt, toolchain
-  setup for Ruby/NVM/Java/Go/Docker/etc). Shared aliases and prompt logic live in `common.sh`,
+- `bash_profile`, `bashrc`, `profile` — bash configuration (aliases, toolchain setup for
+  Ruby/NVM/Java/Go/Docker/etc). Shared aliases and shell-tool integrations live in `common.sh`,
   sourced by `bash_profile` and `profile`.
+- `starship/starship.toml` — prompt config (see below).
 - `vim/vimrc` — Vim configuration (Vundle/vim-plug, Dracula theme).
 - `tmux/tmux.conf` — tmux configuration.
 - `welcome-terminal.txt` — ASCII banner shown on new terminal sessions.
@@ -23,7 +24,20 @@ cd ~/.dotfiles
 ```
 
 The installer backs up any existing `~/.bashrc`, `~/.vimrc`, `~/.tmux.conf`, `~/.bash_profile`,
-etc. to `<file>.bak-<timestamp>` before creating the symlinks.
+`~/.config/starship.toml`, etc. to `<file>.bak-<timestamp>` before creating the symlinks.
+
+### Shell tools
+
+`common.sh` wires in a few external tools if they're installed (each check is a no-op otherwise,
+so the shell still works fine without them):
+
+- [starship](https://starship.rs) — prompt, configured via `starship/starship.toml`
+- [fzf](https://github.com/junegunn/fzf) — fuzzy history (`Ctrl+R`), file (`Ctrl+T`) and
+  directory (`Alt+C`) search
+- [zoxide](https://github.com/ajeetdsouza/zoxide) — smarter `cd` (`z <term>`)
+- [direnv](https://direnv.net) — per-directory environment variables
+
+Install them with Homebrew: `brew install starship fzf zoxide direnv`.
 
 ### Vim plugins
 

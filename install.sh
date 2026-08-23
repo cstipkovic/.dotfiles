@@ -15,6 +15,7 @@ _linux_os() {
 	ln -s ~/.dotfiles/tmux/tmux.conf ~/.tmux.conf
 	ln -s ~/.dotfiles/.git-completion.bash ~/.git-completion.bash
 	ln -s ~/.dotfiles/welcome-terminal.txt ~/.welcome-terminal.txt
+	_linkStarshipConfig
 }
 
 # Mac OS Darwin
@@ -29,6 +30,7 @@ _darwin_os() {
 	ln -s ~/.dotfiles/bash_profile ~/.bash_profile
     ln -s ~/.dotfiles/profile ~/.profile
 	ln -s ~/.dotfiles/welcome-terminal.txt ~/.welcome-terminal.txt
+	_linkStarshipConfig
 }
 
 _vim_plugins() {
@@ -55,6 +57,12 @@ _clearExistingFiles() {
     _backupExistingFile ~/.bash_profile
     _backupExistingFile ~/.git-completion.bash
     _backupExistingFile ~/.welcome-terminal.txt
+}
+
+_linkStarshipConfig() {
+    mkdir -p ~/.config
+    _backupExistingFile ~/.config/starship.toml
+    ln -s ~/.dotfiles/starship/starship.toml ~/.config/starship.toml
 }
 
 _dotfile() {
