@@ -1,5 +1,3 @@
-[ -f "$HOME/.dotfiles/common.sh" ] && source "$HOME/.dotfiles/common.sh"
-
 # ######################################## Ruby ########################################
 if [[ -s $HOME/.rvm/scripts/rvm ]]; then
   source $HOME/.rvm/scripts/rvm;
@@ -17,6 +15,10 @@ export JAVA_HOME=$(/usr/libexec/java_home -v 11)
 
 # Set PATH, MANPATH, etc., for Homebrew.
 eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# common.sh needs Homebrew's bin on PATH (starship/fzf/zoxide/direnv live there),
+# so it must be sourced after brew shellenv, not before.
+[ -f "$HOME/.dotfiles/common.sh" ] && source "$HOME/.dotfiles/common.sh"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"

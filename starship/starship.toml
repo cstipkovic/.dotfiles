@@ -3,8 +3,8 @@
 # $
 
 format = """
-[($time )]($style)$username[@](white)$directory$git_branch$git_status
-$character"""
+[($time )]($style)$username[@](white)$directory${custom.git_branch_clean}${custom.git_branch_dirty}$git_status
+$status$character"""
 
 [time]
 disabled = false
@@ -23,8 +23,23 @@ truncation_length = 3
 truncate_to_repo = true
 
 [git_branch]
-format = " [($branch)]($style)"
-style = "yellow"
+disabled = true
+
+# Branch name colored like the old bash prompt: green when the working
+# tree is clean, red when there are uncommitted changes (git diff --quiet).
+[custom.git_branch_clean]
+command = "git branch --show-current"
+when = "git rev-parse --git-dir >/dev/null 2>&1 && git diff --quiet 2>/dev/null"
+format = " [($output)]($style)"
+style = "green"
+shell = ["bash", "--noprofile", "--norc"]
+
+[custom.git_branch_dirty]
+command = "git branch --show-current"
+when = "git rev-parse --git-dir >/dev/null 2>&1 && ! git diff --quiet 2>/dev/null"
+format = " [($output)]($style)"
+style = "red"
+shell = ["bash", "--noprofile", "--norc"]
 
 [git_status]
 format = "[$all_status$ahead_behind]($style)"
@@ -43,6 +58,14 @@ deleted = "✘"
 [character]
 success_symbol = "[\\$](bold white)"
 error_symbol = "[\\$](bold red)"
+
+# Visible replacement for iTerm2's tiny mark indicator — shows the exit
+# code of the previous command right in the prompt when it failed.
+[status]
+disabled = false
+symbol = "✖ "
+format = "[$symbol$status]($style) "
+style = "bold red"
 
 # Toolchain version indicators — disable ones you don't want to see
 [nodejs]
