@@ -1,9 +1,10 @@
-# ######################################## Ruby ########################################
-if [[ -s $HOME/.rvm/scripts/rvm ]]; then
-  source $HOME/.rvm/scripts/rvm;
-fi
+# ######################################## Homebrew ########################################
+# Set PATH, MANPATH, etc., for Homebrew.
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+# common.sh needs Homebrew's bin on PATH (starship/fzf/zoxide/direnv live there),
+# so it must be sourced after brew shellenv, not before.
+[ -f "$HOME/.dotfiles/common.sh" ] && source "$HOME/.dotfiles/common.sh"
 
 # ######################################## NVM ########################################
 export NVM_DIR="$HOME/.nvm"
@@ -13,36 +14,28 @@ export NVM_DIR="$HOME/.nvm"
 # ######################################## Java ########################################
 export JAVA_HOME=$(/usr/libexec/java_home -v 11)
 
-# Set PATH, MANPATH, etc., for Homebrew.
-eval "$(/opt/homebrew/bin/brew shellenv)"
-
-# common.sh needs Homebrew's bin on PATH (starship/fzf/zoxide/direnv live there),
-# so it must be sourced after brew shellenv, not before.
-[ -f "$HOME/.dotfiles/common.sh" ] && source "$HOME/.dotfiles/common.sh"
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-
 # ######################################## Go Lang ########################################
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
-export PATH="/opt/homebrew/opt/mysql@8.0/bin:$PATH"
 
-# mysql client
+# ######################################## MySQL ########################################
 export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
 
-# Docker (Docker Desktop)
+# ######################################## Docker ########################################
+# Docker Desktop CLI plugins + credential helpers
+export PATH="$PATH:/Users/cstipkovic/.docker/bin"
 export PATH="/Applications/Docker.app/Contents/Resources/bin:$PATH"
 
-# Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/cstipkovic/.lmstudio/bin"
-# End of LM Studio CLI section
-
+# ######################################## Antigravity ########################################
+export PATH="/Users/cstipkovic/.antigravity/antigravity/bin:$PATH"
+export PATH="/Users/cstipkovic/.antigravity-ide/antigravity-ide/bin:$PATH"
 
 test -e ~/.iterm2_shell_integration.bash && source ~/.iterm2_shell_integration.bash || true
 
-# GitHub token for Claude Code MCP
+# .bashrc covers LM Studio CLI and ~/.local/bin, among other PATH entries
+[ -f ~/.bashrc ] && source ~/.bashrc
+
+# ######################################## GitHub token for Claude Code MCP ########################################
 if command -v gh >/dev/null 2>&1; then
   _gh_token="$(gh auth token 2>/dev/null)"
   if [ -n "$_gh_token" ]; then
@@ -51,32 +44,18 @@ if command -v gh >/dev/null 2>&1; then
   unset _gh_token
 fi
 
-# work-brain
-work-brain() {
-  local subcmd="${1:-}"
-  if [[ "$subcmd" == "session" ]]; then
-    shift
-    bash /Users/cstipkovic/Dropbox/Obsidian/cstipkovic/Companies/session.sh "$@"
-  else
-    echo "Usage: work-brain session <start|end|summary|log|moc> <Empresa> <Projeto> [args]"
-  fi
-}
-
-# Added by Antigravity
-export PATH="/Users/cstipkovic/.antigravity/antigravity/bin:$PATH"
-
-# Added by Antigravity IDE
-export PATH="/Users/cstipkovic/.antigravity-ide/antigravity-ide/bin:$PATH"
-[ -f ~/.bashrc ] && source ~/.bashrc
-
+# ######################################## Claude Code (multi-account) ########################################
 # Descubra o caminho exato do binário rodando 'command -v claude' ou use o padrão do Node/npm
 CLAUDE_BIN=$(command -v claude)
 
 # Cria os aliases apontando para diretórios de configuração isolados
-alias claude-m="CLAUDE_CONFIG_DIR=\"$HOME/.claude-majmun\" $CLAUDE_BIN"
-alias claude-i="CLAUDE_CONFIG_DIR=\"$HOME/.claude-intelifi\" $CLAUDE_BIN"
+claude-m() { CLAUDE_CONFIG_DIR="$HOME/.claude-majmun" "$CLAUDE_BIN" "$@"; }
+claude-i() { CLAUDE_CONFIG_DIR="$HOME/.claude-intelifi" "$CLAUDE_BIN" "$@"; }
 
 # Proteção opcional para evitar abrir sem contexto
 alias claude="echo 'Use claude-m (Max Majmun) ou claude-i (Pro InteliFi)'"
 
-export PATH="/Users/cstipkovic/.local/bin:$PATH"
+# ######################################## SDKMAN ########################################
+# THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"

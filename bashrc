@@ -46,5 +46,3 @@ export PATH="$HOME/bin:$PATH"
 
 # ai-memory binary
 export PATH="$HOME/Applications/ai-memory:$PATH"
-
-export PATH="/Users/cstipkovic/.local/bin:$PATH"
