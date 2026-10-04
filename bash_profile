@@ -23,12 +23,12 @@ export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
 
 # ######################################## Docker ########################################
 # Docker Desktop CLI plugins + credential helpers
-export PATH="$PATH:/Users/cstipkovic/.docker/bin"
+export PATH="$PATH:$HOME/.docker/bin"
 export PATH="/Applications/Docker.app/Contents/Resources/bin:$PATH"
 
 # ######################################## Antigravity ########################################
-export PATH="/Users/cstipkovic/.antigravity/antigravity/bin:$PATH"
-export PATH="/Users/cstipkovic/.antigravity-ide/antigravity-ide/bin:$PATH"
+export PATH="$HOME/.antigravity/antigravity/bin:$PATH"
+export PATH="$HOME/.antigravity-ide/antigravity-ide/bin:$PATH"
 
 test -e ~/.iterm2_shell_integration.bash && source ~/.iterm2_shell_integration.bash || true
 

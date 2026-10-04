@@ -1,46 +1,10 @@
 #!/usr/bin/env bash
 
-# The dotfile initial
+# Symlinks the dotfiles into $HOME. Safe to run more than once: links that are
+# already correct are left alone, anything else is moved to <file>.bak-<timestamp>.
 
+DOTFILES="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 os_name=$(uname -s)
-
-# Linux
-_linux_os() {
-	curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ~/.git-completion.bash
-
-	_backupExistingFile ~/.bashrc
-
-	ln -s ~/.dotfiles/bashrc ~/.bashrc
-	ln -s ~/.dotfiles/vim/vimrc ~/.vimrc
-	ln -s ~/.dotfiles/tmux/tmux.conf ~/.tmux.conf
-	ln -s ~/.dotfiles/.git-completion.bash ~/.git-completion.bash
-	ln -s ~/.dotfiles/welcome-terminal.txt ~/.welcome-terminal.txt
-	_linkStarshipConfig
-}
-
-# Mac OS Darwin
-_darwin_os() {
-    _clearExistingFiles
-
-    curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ~/.git-completion.bash
-
-	ln -s ~/.dotfiles/bashrc ~/.bashrc
-	ln -s ~/.dotfiles/vim/vimrc ~/.vimrc
-	ln -s ~/.dotfiles/tmux/tmux.conf ~/.tmux.conf
-	ln -s ~/.dotfiles/bash_profile ~/.bash_profile
-    ln -s ~/.dotfiles/profile ~/.profile
-	ln -s ~/.dotfiles/welcome-terminal.txt ~/.welcome-terminal.txt
-	_linkStarshipConfig
-}
-
-_vim_plugins() {
-    echo "Getting Vim-Plug"
-
-    curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-	    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-}
-
-# Common functions
 
 # Moves an existing file/symlink aside to <file>.bak-<timestamp> instead of deleting it.
 _backupExistingFile() {
@@ -50,31 +14,46 @@ _backupExistingFile() {
     fi
 }
 
-_clearExistingFiles() {
-    _backupExistingFile ~/.bashrc
-    _backupExistingFile ~/.vimrc
-    _backupExistingFile ~/.tmux.conf
-    _backupExistingFile ~/.bash_profile
-    _backupExistingFile ~/.git-completion.bash
-    _backupExistingFile ~/.welcome-terminal.txt
+# _link <source in repo> <destination>
+_link() {
+    local src="$1" dest="$2"
+    if [ -L "$dest" ] && [ "$(readlink "$dest")" = "$src" ]; then
+        return 0
+    fi
+    mkdir -p "$(dirname "$dest")"
+    _backupExistingFile "$dest"
+    ln -s "$src" "$dest"
 }
 
-_linkStarshipConfig() {
-    mkdir -p ~/.config
-    _backupExistingFile ~/.config/starship.toml
-    ln -s ~/.dotfiles/starship/starship.toml ~/.config/starship.toml
+_gitCompletion() {
+    [ -f ~/.git-completion.bash ] && return 0
+    curl -fsSL https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash \
+        -o ~/.git-completion.bash
 }
 
-_dotfile() {
-	echo "dotfiles"
+_vim_plugins() {
+    echo "Getting Vim-Plug"
+
+    curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 }
 
-if [ $os_name = "Darwin" ]
-then
+_common_links() {
+    _link "$DOTFILES/bashrc" ~/.bashrc
+    _link "$DOTFILES/vim/vimrc" ~/.vimrc
+    _link "$DOTFILES/tmux/tmux.conf" ~/.tmux.conf
+    _link "$DOTFILES/welcome-terminal.txt" ~/.welcome-terminal.txt
+    _link "$DOTFILES/starship/starship.toml" ~/.config/starship.toml
+}
+
+if [ "$os_name" = "Darwin" ]; then
     echo "Configurations for Mac OS"
-    _clearExistingFiles
-	_darwin_os
+    _gitCompletion
+    _common_links
+    _link "$DOTFILES/bash_profile" ~/.bash_profile
+    _link "$DOTFILES/profile" ~/.profile
 else
     echo "Configurations for Linux/Unix"
-	_linux_os
+    _gitCompletion
+    _common_links
 fi

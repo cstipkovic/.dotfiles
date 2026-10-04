@@ -5,12 +5,12 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 # so it must be sourced after brew shellenv, not before.
 [ -f "$HOME/.dotfiles/common.sh" ] && source "$HOME/.dotfiles/common.sh"
 
-[[ -s "/Users/cstipkovic/.gvm/scripts/gvm" ]] && source "/Users/cstipkovic/.gvm/scripts/gvm"
+[[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
 
 # mysql-client
 export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
 
 # Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/cstipkovic/.lmstudio/bin"
+export PATH="$PATH:$HOME/.lmstudio/bin"
 # End of LM Studio CLI section
 
