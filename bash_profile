@@ -1,25 +1,35 @@
 # ######################################## Homebrew ########################################
-# Set PATH, MANPATH, etc., for Homebrew.
-eval "$(/opt/homebrew/bin/brew shellenv)"
+# Set PATH, MANPATH, etc., for Homebrew (Apple Silicon and Intel prefixes).
+if [ -x /opt/homebrew/bin/brew ]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [ -x /usr/local/bin/brew ]; then
+  eval "$(/usr/local/bin/brew shellenv)"
+fi
 
 # common.sh needs Homebrew's bin on PATH (starship/fzf/zoxide/direnv live there),
 # so it must be sourced after brew shellenv, not before.
-[ -f "$HOME/.dotfiles/common.sh" ] && source "$HOME/.dotfiles/common.sh"
+[ -f "$HOME/.common.sh" ] && source "$HOME/.common.sh"
 
 # ######################################## NVM ########################################
 export NVM_DIR="$HOME/.nvm"
-  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+_nvm_prefix="${HOMEBREW_PREFIX:-/opt/homebrew}"
+  [ -s "$_nvm_prefix/opt/nvm/nvm.sh" ] && \. "$_nvm_prefix/opt/nvm/nvm.sh"  # This loads nvm
+  [ -s "$_nvm_prefix/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$_nvm_prefix/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+unset _nvm_prefix
 
 # ######################################## Java ########################################
-export JAVA_HOME=$(/usr/libexec/java_home -v 11)
+if [ -x /usr/libexec/java_home ]; then
+  _java_home="$(/usr/libexec/java_home -v 11 2>/dev/null || /usr/libexec/java_home 2>/dev/null)"
+  [ -n "$_java_home" ] && export JAVA_HOME="$_java_home"
+  unset _java_home
+fi
 
 # ######################################## Go Lang ########################################
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 
 # ######################################## MySQL ########################################
-export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
+export PATH="${HOMEBREW_PREFIX:-/opt/homebrew}/opt/mysql-client/bin:$PATH"
 
 # ######################################## Docker ########################################
 # Docker Desktop CLI plugins + credential helpers
@@ -46,14 +56,14 @@ fi
 
 # ######################################## Claude Code (multi-account) ########################################
 # Descubra o caminho exato do binário rodando 'command -v claude' ou use o padrão do Node/npm
-CLAUDE_BIN=$(command -v claude)
+if CLAUDE_BIN="$(command -v claude 2>/dev/null)" && [ -n "$CLAUDE_BIN" ]; then
+  # Cria os aliases apontando para diretórios de configuração isolados
+  claude-m() { CLAUDE_CONFIG_DIR="$HOME/.claude-majmun" "$CLAUDE_BIN" "$@"; }
+  claude-i() { CLAUDE_CONFIG_DIR="$HOME/.claude-intelifi" "$CLAUDE_BIN" "$@"; }
 
-# Cria os aliases apontando para diretórios de configuração isolados
-claude-m() { CLAUDE_CONFIG_DIR="$HOME/.claude-majmun" "$CLAUDE_BIN" "$@"; }
-claude-i() { CLAUDE_CONFIG_DIR="$HOME/.claude-intelifi" "$CLAUDE_BIN" "$@"; }
-
-# Proteção opcional para evitar abrir sem contexto
-alias claude="echo 'Use claude-m (Max Majmun) ou claude-i (Pro InteliFi)'"
+  # Proteção opcional para evitar abrir sem contexto
+  alias claude="echo 'Use claude-m (Max Majmun) ou claude-i (Pro InteliFi)'"
+fi
 
 # ######################################## SDKMAN ########################################
 # THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!

@@ -3,10 +3,9 @@
 	# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 	# for examples
 
-alias ls='ls -G --color=auto'
-alias rm='rm -i'
-alias ll='ls -alhF --color=auto'
-alias tree='tree -C'
+# Shared aliases, prompt and shell-tool integrations (starship/fzf/zoxide/direnv).
+# Sourced here as well so non-login shells (tmux, most Linux terminals) get it.
+[ -f "$HOME/.common.sh" ] && source "$HOME/.common.sh"
 
 # export PATH="$HOME/.jenv/bin:$PATH"
 # eval "$(jenv init -)"

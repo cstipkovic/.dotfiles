@@ -32,6 +32,10 @@ _gitCompletion() {
 }
 
 _vim_plugins() {
+    if [ -f ~/.vim/autoload/plug.vim ]; then
+        return 0
+    fi
+
     echo "Getting Vim-Plug"
 
     curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
@@ -39,6 +43,7 @@ _vim_plugins() {
 }
 
 _common_links() {
+    _link "$DOTFILES/common.sh" ~/.common.sh
     _link "$DOTFILES/bashrc" ~/.bashrc
     _link "$DOTFILES/vim/vimrc" ~/.vimrc
     _link "$DOTFILES/tmux/tmux.conf" ~/.tmux.conf
@@ -46,14 +51,33 @@ _common_links() {
     _link "$DOTFILES/starship/starship.toml" ~/.config/starship.toml
 }
 
+# Optional tools are never installed automatically; just report what's missing.
+_checkDependencies() {
+    local missing=() cmd
+    for cmd in starship fzf zoxide direnv tmux; do
+        command -v "$cmd" >/dev/null 2>&1 || missing+=("$cmd")
+    done
+
+    if [ ${#missing[@]} -gt 0 ]; then
+        echo
+        echo "Optional tools not installed: ${missing[*]}"
+        echo "Install them with: brew install ${missing[*]}"
+        echo "(or use your distro's package manager on Linux)"
+    fi
+}
+
 if [ "$os_name" = "Darwin" ]; then
     echo "Configurations for Mac OS"
     _gitCompletion
     _common_links
+    _vim_plugins
     _link "$DOTFILES/bash_profile" ~/.bash_profile
     _link "$DOTFILES/profile" ~/.profile
 else
     echo "Configurations for Linux/Unix"
     _gitCompletion
     _common_links
+    _vim_plugins
 fi
+
+_checkDependencies
