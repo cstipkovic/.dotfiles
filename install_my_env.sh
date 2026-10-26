@@ -34,9 +34,14 @@ elif [ -x /usr/local/bin/brew ]; then
   eval "$(/usr/local/bin/brew shellenv)"
 fi
 
-# Brewfile: usa o do lado do script, ou baixa do gist (curl | bash)
-BREWFILE="$(dirname "${BASH_SOURCE[0]:-$0}")/Brewfile"
-if [ ! -f "$BREWFILE" ]; then
+# Brewfile: usa um Brewfile ao lado do script (se existir e o script não for
+# lido via stdin), senão baixa o do gist. Não usa o diretório atual para não
+# pegar um Brewfile errado quando o script roda via `curl | bash`.
+BREWFILE=""
+if [ -n "${BASH_SOURCE[0]:-}" ] && [ -f "$(dirname "${BASH_SOURCE[0]}")/Brewfile" ]; then
+  BREWFILE="$(dirname "${BASH_SOURCE[0]}")/Brewfile"
+fi
+if [ -z "$BREWFILE" ]; then
   BREWFILE="$(mktemp)"
   trap 'rm -f "$BREWFILE"' EXIT
   curl -fsSL "$GIST_RAW/Brewfile" -o "$BREWFILE"
