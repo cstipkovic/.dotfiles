@@ -51,8 +51,9 @@ brew update || echo "AVISO: brew update falhou; seguindo com o que já está loc
 # Não aborta se algo falhar (ex.: sem login na App Store); rode `brew bundle` de novo depois
 brew bundle --file="$BREWFILE" || echo "AVISO: brew bundle terminou com erros; veja acima e rode de novo depois."
 
-# Ferramentas novas que podem faltar em Brewfiles antigos.
-for pkg in tmux yarn; do
+# Ferramentas novas que podem faltar em Brewfiles antigos. node é necessário
+# para o `yarn install` do plugin vim-prettier rodar no PlugInstall abaixo.
+for pkg in tmux node yarn; do
   command -v "$pkg" >/dev/null 2>&1 || brew install "$pkg"
 done
 
